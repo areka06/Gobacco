@@ -90,7 +90,7 @@ class AdminController extends Controller
     }
     public function melihatTanamTembakau()
     {
-        $edukasi = Edukasi::all();
+        $edukasi = Edukasi::where('id_topik', 1)->get();
         return view('admin.edukasi.tanamtembakau', [
             'edukasis' => $edukasi,
             'title' => 'Data Edukasi'
@@ -100,5 +100,15 @@ class AdminController extends Controller
     {
         $edukasi = Edukasi::find($id_edukasi);
         return view('admin.edukasi.pagetanam', ['edukasi' => $edukasi]);
+    }
+    public function melihatEksporTembakau()
+    {
+        // Mengambil data dari tabel Edukasi yang memiliki id_topik = 2
+        $edukasi = Edukasi::where('id_topik', 2)->get();
+
+        return view('admin.edukasi.eksportembakau', [
+            'edukasis' => $edukasi,
+            'title' => 'Data Edukasi'
+        ]);
     }
 }

@@ -21,15 +21,52 @@
     .image2-wrapper {
         width: 300px;
         height: 400px;
-        object-fit: cover;
-    }
-
-    .image2-wrapper img {
-        height: 2000px;
     }
 
     .image2-wrapper button {
         margin-bottom: 30px;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #004225;
+    }
+
+    tbody tr:nth-child(even) {
+        color: black;
+    }
+
+    .buttons-back {
+        width: 150px;
+        height: 45px;
+        background-color: #FFB000;
+        border-radius: 30px;
+        z-index: 9999;
+        position: absolute;
+        margin-top: 75px;
+        margin-left: -510px;
+    }
+
+    .buttons-add {
+        width: 150px;
+        height: 35px;
+        background-color: #FFB000;
+        border-radius: 30px;
+        z-index: 9999;
+        position: absolute;
+        margin-top: 170px;
+        margin-left: 340px;
+    }
+
+    .image-edu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 6px;
+    }
+
+    .image-edu img {
+        width: 150px;
+        height: auto;
     }
 </style>
 
@@ -43,19 +80,19 @@
                 <div class=" col-span-2 bg-light-secondary flex flex-col justify-between relative">
                     <div>
                         <div class="pb-32"></div>
-                        <a href="/admin/dashboard" class="flex items-center px-4 py-2  text-light-primary hover:bg-light-button hover:rounded-full">
+                        <a href="/pemerintah/dashboard" class="flex items-center px-4 py-2  text-light-primary hover:bg-light-button hover:rounded-full">
                             <div class="">
                                 <img src="../images/Haruki Icons.svg" class="w-3/4">
                             </div>
                             Dashboard
                         </a>
-                        <a href="/admin/user" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
+                        <a href="/pemerintah/user" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
                             <div class="">
                                 <img src="../images/Haruki Icons (4).svg" class="w-3/4">
                             </div>
                             User
                         </a>
-                        <a href="/admin/edukasi" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
+                        <a href="/pemerintah/edukasi" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
                             <div class="">
                                 <img src="../images/Haruki Icons (3).svg" class="w-3/4">
                             </div>
@@ -75,11 +112,11 @@
                         <div class="flex items-center py-2 px-4 mt-0 space-x-4 justify-self-end">
                             <img src="../images/profil.svg" alt="" class="w-12 h-12 rounded-lg dark:bg-gray-500">
                             <div>
-                                <a href="/admin/akun">
-                                    <h2 class="text-base font-normal text-light-primary">Admin</h2>
-                                    <span class="flex items-center space-x-1 text-sm text-light-primary">
-                                        <p>Gobacco</p>
-                                    </span>
+                                <a href="/pemerintah/akun">
+                                <h2 class="text-base font-normal text-light-primary">UPT. PSMB-LT Jember</h2>
+                                <span class="flex items-center space-x-1 text-sm text-light-primary">
+                                    <p>Pemerintah</p>
+                                </span>
                                 </a>
                             </div>
                         </div>
@@ -87,22 +124,36 @@
                 </div>
                 <div class="tengah" style="z-index:998; margin-top: 110px;height:635px; width:1105px; background-color:#F5F5DC; border-radius: 50px 50px 0 0; display:flex; justify-content:center;">
                     <div id="edukasi" class="Edukasi">
+                        <div class="button-kembali"><a href="/pemerintah/edukasi"><button class="buttons-back">Kembali</button></a></div>
                         <h2 style="font-family: 'Poppins', sans-serif;">Informasi Edukasi Gobacco</h2>
-                        <div class="image2-container" style="margin-bottom: 1000px; height: max-content; ">
-                            <div class="image2-wrapper">
-                                <img src="../images/images4.jpg.png" alt="Gambar 1">
-                                <h5 style="font-family: 'Poppins', sans-serif">Informasi penanaman</h5>
-                                <a href="/admin/tanamtembakau"><button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button></a>
-                            </div>
-                            <div class="image2-wrapper">
-                                <img src="../images/images5.jpg" alt="Gambar 2">
-                                <h5 style="font-family: 'Poppins', sans-serif">Informasi Ekspor</h5>
-                                <a href="/admin/eksportembakau"><button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button></a>
-                            </div>
+                        <div style="overflow-y: scroll; border-radius: 18px; max-height: 500px;">
+                            <table style="width: 1000px; ">
+                                <thead style="background-color: #9EB384;">
+                                    <tr>
+                                        <td>GAMBAR EDUKASI</td>
+                                        <td>JUDUL EDUKASI</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($edukasis as $edukasi)
+                                    <tr>
+                                        <td style="width: 300px;">
+                                            <a href="{{ route('pagetanam.pemerintah', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                                <div class="image-edu"><img src="../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('pagetanam.pemerintah', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                                {{ $edukasi->judul_edukasi }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
 </body>
 

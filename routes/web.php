@@ -84,6 +84,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/pemerintah',[AdminController::class,'melihatDataPemerintah']);
     Route::get('/petani',[AdminController::class,'melihatDataPetani']);
     Route::get('/tanamtembakau',[AdminController::class,'melihatTanamTembakau']);
+    Route::get('/eksportembakau',[AdminController::class,'melihatEksporTembakau']);
     Route::get('/pagetanam',[AdminController::class,'melihatPageTanam']);
     Route::get('/edukasi',[AdminController::class,'melihatEdukasi']);
     Route::get('/pagetanam/{id_edukasi}', [AdminController::class, 'melihatPageTanam'])->name('pagetanam.admin');

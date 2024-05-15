@@ -84,12 +84,12 @@
                             <div class="image2-wrapper">
                                 <img src="../images/images4.jpg.png" alt="Gambar 1">
                                 <h5 style="font-family: 'Poppins', sans-serif">Informasi penanaman</h5>
-                                <a href="/pemerintah/tanamtembakau"><button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button><a>
+                                <a href="/pemerintah/tanamtembakau"><button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button></a>
                             </div>
                             <div class="image2-wrapper">
                                 <img src="../images/images5.jpg" alt="Gambar 2">
                                 <h5 style="font-family: 'Poppins', sans-serif">Informasi Ekspor</h5>
-                                <button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button>
+                                <a href="/pemerintah/eksportembakau"><button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button></a>
                             </div>
                         </div>
                     </div>

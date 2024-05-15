@@ -21,15 +21,52 @@
     .image2-wrapper {
         width: 300px;
         height: 400px;
-        object-fit: cover;
-    }
-
-    .image2-wrapper img {
-        height: 2000px;
     }
 
     .image2-wrapper button {
         margin-bottom: 30px;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #004225;
+    }
+
+    tbody tr:nth-child(even) {
+        color: black;
+    }
+
+    .buttons-back {
+        width: 150px;
+        height: 45px;
+        background-color: #FFB000;
+        border-radius: 30px;
+        z-index: 9999;
+        position: absolute;
+        margin-top: 75px;
+        margin-left: -510px;
+    }
+
+    .buttons-add {
+        width: 150px;
+        height: 35px;
+        background-color: #FFB000;
+        border-radius: 30px;
+        z-index: 9999;
+        position: absolute;
+        margin-top: 170px;
+        margin-left: 340px;
+    }
+
+    .image-edu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 6px;
+    }
+
+    .image-edu img {
+        width: 150px;
+        height: auto;
     }
 </style>
 
@@ -87,22 +124,36 @@
                 </div>
                 <div class="tengah" style="z-index:998; margin-top: 110px;height:635px; width:1105px; background-color:#F5F5DC; border-radius: 50px 50px 0 0; display:flex; justify-content:center;">
                     <div id="edukasi" class="Edukasi">
+                        <div class="button-kembali"><a href="/admin/edukasi"><button class="buttons-back">Kembali</button></a></div>
                         <h2 style="font-family: 'Poppins', sans-serif;">Informasi Edukasi Gobacco</h2>
-                        <div class="image2-container" style="margin-bottom: 1000px; height: max-content; ">
-                            <div class="image2-wrapper">
-                                <img src="../images/images4.jpg.png" alt="Gambar 1">
-                                <h5 style="font-family: 'Poppins', sans-serif">Informasi penanaman</h5>
-                                <a href="/admin/tanamtembakau"><button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button></a>
-                            </div>
-                            <div class="image2-wrapper">
-                                <img src="../images/images5.jpg" alt="Gambar 2">
-                                <h5 style="font-family: 'Poppins', sans-serif">Informasi Ekspor</h5>
-                                <a href="/admin/eksportembakau"><button class="lihat-detail" style="font-family: 'Poppins', sans-serif;">Lihat Detail</button></a>
-                            </div>
+                        <div style="overflow-y: scroll; border-radius: 18px; max-height: 500px;">
+                            <table style="width: 1000px; ">
+                                <thead style="background-color: #9EB384;">
+                                    <tr>
+                                        <td>GAMBAR EDUKASI</td>
+                                        <td>JUDUL EDUKASI</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($edukasis as $edukasi)
+                                    <tr>
+                                        <td style="width: 300px;">
+                                            <a href="{{ route('pagetanam.admin', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                                <div class="image-edu"><img src="../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('pagetanam.admin', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                                {{ $edukasi->judul_edukasi }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
 </body>
 
