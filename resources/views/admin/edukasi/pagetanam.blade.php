@@ -34,7 +34,8 @@
     .page img{
         margin-top: 40px;
         margin-bottom: 40px;
-        width: 450px;
+        width: auto;
+        height: 450px;
     }
     .page p{
         color: #00422580;
@@ -45,9 +46,9 @@
 <body>
     <section class="font-poppins">
         @if ($edukasi->id_topik == 1)
-            <a href="/pemerintah/tanamtembakau">
+            <a href="/admin/tanamtembakau">
         @elseif ($edukasi->id_topik == 2)
-            <a href="/pemerintah/eksportembakau">
+            <a href="/admin/eksportembakau">
         @endif
             <div class="container">
                 <button>Kembali</button>
@@ -55,7 +56,7 @@
         </a>
         <div class="page">
             <h2 style="font-family: 'Poppins', sans-serif; color: #004225; font-weight:600; font-size:26px;" >{{$edukasi->judul_edukasi}}</h2>
-            <div class="image-edu"><img src="../../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
+            <div class="image-edu"><img src="../../storage/gambar_edu//{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
             <p>{{$edukasi->teks_edu}}</p>
 
         </div>

@@ -98,14 +98,14 @@
                                             >
                                     </div>
     
-                                    <div class=""">
+                                    <div class="">
                                         <label for=" ktp" class="text-base font-medium text-light-secondary block mb-2">No
                                         KTP</label>
                                         <input disabled type="number" value="{{ $sertifikasi->noktp_petani }}" name="noktp_petani" id="noktp_petani"
                                             class="shadow-sm bg-light-fill bg-opacity-50 text-light-secondary rounded-lg block w-full p-2.5 focus:outline-slate-400"
                                             >
                                     </div>
-                                    <div class=""">
+                                    <div class="">
                                         <label for=" ktp" class="text-base font-medium text-light-secondary block mb-2">Kecamatan</label>
                                         <input disabled type="text" value="{{ $sertifikasi->kecamatan }}" name="id_kecamatan" id="noktp_petani"
                                             class="shadow-sm bg-light-fill bg-opacity-50 text-light-secondary rounded-lg block w-full p-2.5 focus:outline-slate-400"

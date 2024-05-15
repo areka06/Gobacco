@@ -63,7 +63,7 @@ class AdminController extends Controller
     public function melihatEdukasi()
     {
         return view('admin.edukasi.edukasi', [
-            'title' => 'Edukasi Petani'
+            'title' => 'Edukasi Admin'
         ]);
     }
     public function melihatDataUser()
@@ -110,5 +110,79 @@ class AdminController extends Controller
             'edukasis' => $edukasi,
             'title' => 'Data Edukasi'
         ]);
+    }
+
+    public function membuatEdukasi(Request $request)
+    {
+        $id_admin = $request->session()->get('id', null);
+        $id_topik = $request->session()->get('id', null);
+        $admin = Admin::find($id_admin);
+        $edukasi = Edukasi::find($id_topik);
+        $edukasi = Edukasi::where('id_topik', 1)->get();
+
+        return view('admin.edukasi.buatedukasi', [
+            'edukasis' => $edukasi,
+            'admin' => $admin,
+            'id_topik' => $id_topik,
+            'title' => 'Data Edukasi'
+        ]);
+    }
+    
+    public function postMembuatEdukasi(Request $request)
+    {
+        // Validasi input jika diperlukan
+        $request->validate([
+            'id_topik' => 'required',
+            'judul_edukasi' => 'required',
+            'gambar_edukasi' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'teks_edu' => 'required'
+        ]);
+        
+    
+        try {
+            Log::info('Validasi berhasil');
+    
+            // Simpan data ke database
+            $edukasi = new Edukasi();
+            $edukasi->id_topik = $request->id_topik;
+            $edukasi->judul_edukasi = $request->judul_edukasi;
+            
+            // Simpan gambar ke storage
+            $gambar = $request->file('gambar_edukasi');
+            $gambar_nama = time().'.'.$gambar->getClientOriginalExtension();
+            
+            // Tentukan path penyimpanan gambar
+            $tujuanPath = storage_path('../public/storage/gambar_edu');
+            
+            // Pastikan path tersebut ada dan dapat diakses
+            if (!file_exists($tujuanPath)) {
+                mkdir($tujuanPath, 0777, true);
+            }
+    
+            // Pindahkan file ke path yang ditentukan
+            $gambar->move($tujuanPath, $gambar_nama);
+    
+            Log::info('Gambar disimpan dengan nama: ' . $gambar_nama);
+    
+            $edukasi->gambar_edukasi = $gambar_nama;
+            $edukasi->teks_edu = $request->teks_edu;
+    
+            // Debugging data sebelum menyimpan
+            Log::info('Data edukasi:', [
+                'id_topik' => $edukasi->id_topik,
+                'judul_edukasi' => $edukasi->judul_edukasi,
+                'gambar_edukasi' => $edukasi->gambar_edukasi,
+                'teks_edu' => $edukasi->teks_edu
+            ]);
+    
+            $edukasi->save();
+            Log::info('Edukasi berhasil disimpan');
+    
+            return redirect('/admin/tanamtembakau')->with('success', 'Edukasi berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            // Tangani kesalahan
+            Log::error('Error saving edukasi: ' . $e->getMessage());
+            return redirect()->back()->withInput()->withErrors(['error' => 'Error saving edukasi']);
+        }
     }
 }

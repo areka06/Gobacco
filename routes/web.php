@@ -90,4 +90,6 @@ Route::prefix('/admin')->group(function(){
     Route::get('/pagetanam',[AdminController::class,'melihatPageTanam']);
     Route::get('/edukasi',[AdminController::class,'melihatEdukasi']);
     Route::get('/pagetanam/{id_edukasi}', [AdminController::class, 'melihatPageTanam'])->name('pagetanam.admin');
+    Route::get('/buatedukasi', [AdminController::class, 'membuatEdukasi']);
+    Route::post('/buatedukasi', [AdminController::class, 'postMembuatEdukasi'])->name('membuatedukasi');
 });

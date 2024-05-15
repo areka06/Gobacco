@@ -125,7 +125,7 @@
                 <div class="tengah" style="z-index:998; margin-top: 110px;height:635px; width:1105px; background-color:#F5F5DC; border-radius: 50px 50px 0 0; display:flex; justify-content:center;">
                     <div id="edukasi" class="Edukasi">
                         <div class="button-kembali"><a href="/admin/edukasi"><button class="buttons-back">Kembali</button></a></div>
-                        <div class="button-kembali"><a href="/admin/edukasi"><button class="buttons-add">+ Tambah Data</button></a></div>
+                        <div class="button-kembali"><a href="/admin/buatedukasi"><button class="buttons-add">+ Tambah Data</button></a></div>
                         <h2 style="font-family: 'Poppins', sans-serif;">Informasi Edukasi Gobacco</h2>
                         <div style="overflow-y: scroll; border-radius: 18px; max-height: 500px;">
                             <table style="width: 1000px; ">
@@ -140,7 +140,7 @@
                                     <tr>
                                         <td style="width: 300px;">
                                             <a href="{{ route('pagetanam.admin', ['id_edukasi' => $edukasi->id_edukasi]) }}">
-                                                <div class="image-edu"><img src="../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
+                                                <div class="image-edu"><img src="../storage/gambar_edu/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
                                             </a>
                                         </td>
                                         <td>
