@@ -80,19 +80,19 @@
                 <div class=" col-span-2 bg-light-secondary flex flex-col justify-between relative">
                     <div>
                         <div class="pb-32"></div>
-                        <a href="/pemerintah/dashboard" class="flex items-center px-4 py-2  text-light-primary hover:bg-light-button hover:rounded-full">
+                        <a href="/petani/dashboard" class="flex items-center px-4 py-2  text-light-primary hover:bg-light-button hover:rounded-full">
                             <div class="">
                                 <img src="../images/Haruki Icons.svg" class="w-3/4">
                             </div>
                             Dashboard
                         </a>
-                        <a href="/pemerintah/user" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
+                        <a href="/petani/user" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
                             <div class="">
                                 <img src="../images/Haruki Icons (4).svg" class="w-3/4">
                             </div>
                             User
                         </a>
-                        <a href="/pemerintah/edukasi" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
+                        <a href="/petani/edukasi" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
                             <div class="">
                                 <img src="../images/Haruki Icons (3).svg" class="w-3/4">
                             </div>
@@ -112,19 +112,18 @@
                         <div class="flex items-center py-2 px-4 mt-0 space-x-4 justify-self-end">
                             <img src="../images/profil.svg" alt="" class="w-12 h-12 rounded-lg dark:bg-gray-500">
                             <div>
-                                <a href="/pemerintah/akun">
-                                <h2 class="text-base font-normal text-light-primary">UPT. PSMB-LT Jember</h2>
+                                <a href="/petani/akun">
+                                <h2 class="text-base font-normal text-light-primary">{{ $petani->nama_petani }}</h2>
                                 <span class="flex items-center space-x-1 text-sm text-light-primary">
-                                    <p>Pemerintah</p>
-                                </span>
-                                </a>
+                                    <p>Petani</p>
+                                </span></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="tengah" style="z-index:998; margin-top: 110px;height:635px; width:1105px; background-color:#F5F5DC; border-radius: 50px 50px 0 0; display:flex; justify-content:center;">
                     <div id="edukasi" class="Edukasi">
-                        <div class="button-kembali"><a href="/pemerintah/edukasi"><button class="buttons-back">Kembali</button></a></div>
+                        <div class="button-kembali"><a href="/petani/edukasi"><button class="buttons-back">Kembali</button></a></div>
                         <div class="button-kembali"><a href="/admin/edukasi"><button class="buttons-add">+ Tambah Data</button></a></div>
                         <h2 style="font-family: 'Poppins', sans-serif;">Informasi Edukasi Gobacco</h2>
                         <div style="overflow-y: scroll; border-radius: 18px; max-height: 500px;">
@@ -139,12 +138,12 @@
                                     @foreach ($edukasis as $edukasi)
                                     <tr>
                                         <td style="width: 300px;">
-                                            <a href="{{ route('pagetanam.pemerintah', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                            <a href="{{ route('pagetanam.petani', ['id_edukasi' => $edukasi->id_edukasi]) }}">
                                                 <div class="image-edu"><img src="../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('pagetanam.pemerintah', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                            <a href="{{ route('pagetanam.petani', ['id_edukasi' => $edukasi->id_edukasi]) }}">
                                                 {{ $edukasi->judul_edukasi }}
                                             </a>
                                         </td>

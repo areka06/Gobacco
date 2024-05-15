@@ -265,7 +265,7 @@ class PetaniController extends Controller
     {
         $id_petani = $request->session()->get('id', null);
         $petani = PetaniTembakau::find($id_petani);
-        $edukasi = Edukasi::all();
+        $edukasi = Edukasi::where('id_topik', 1)->get();
         return view('petani.edukasi.tanamtembakau', [
             'edukasis' => $edukasi,
             'petani' => $petani ,
@@ -288,4 +288,16 @@ class PetaniController extends Controller
             'petani' => $petani 
         ]);
     }   
+    public function melihatEksporTembakau(Request $request)
+    {
+        $id_petani = $request->session()->get('id', null);
+        $petani = PetaniTembakau::find($id_petani);
+        $edukasi = Edukasi::where('id_topik', 2)->get();
+
+        return view('petani.edukasi.eksportembakau', [
+            'edukasis' => $edukasi,
+            'petani' => $petani ,
+            'title' => 'Data Edukasi'
+        ]);
+    }
 }

@@ -44,9 +44,15 @@
 </style>
 <body>
     <section class="font-poppins">
-        <a href="/admin/tanamtembakau"><div class="container">
-            <button>Kembali</button>
-        </div></a>
+        @if ($edukasi->id_topik == 1)
+            <a href="/pemerintah/tanamtembakau">
+        @elseif ($edukasi->id_topik == 2)
+            <a href="/pemerintah/eksportembakau">
+        @endif
+            <div class="container">
+                <button>Kembali</button>
+            </div>
+        </a>
         <div class="page">
             <h2 style="font-family: 'Poppins', sans-serif; color: #004225; font-weight:600; font-size:26px;" >{{$edukasi->judul_edukasi}}</h2>
             <div class="image-edu"><img src="../../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>

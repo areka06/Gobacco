@@ -171,14 +171,13 @@ class PemerintahController extends Controller
         return view('pemerintah.edukasi.edukasi', [
             'title' => 'Edukasi Pemerintah',
             'pemerintah' => $pemerintah 
-            
         ]);
     }
     public function melihatTanamTembakau(Request $request)
     {
         $id_pemerintah = $request->session()->get('id', null);
         $pemerintah = Pemerintah::find($id_pemerintah);
-        $edukasi = Edukasi::all();
+        $edukasi = Edukasi::where('id_topik', 1)->get();
         return view('pemerintah.edukasi.tanamtembakau', [
             'edukasis' => $edukasi,
             'pemerintah' => $pemerintah ,
@@ -190,5 +189,14 @@ class PemerintahController extends Controller
         $edukasi = Edukasi::find($id_edukasi);
         return view('pemerintah.edukasi.pagetanam', ['edukasi' => $edukasi]);
     }
-    
+    public function melihatEksporTembakau()
+    {
+        // Mengambil data dari tabel Edukasi yang memiliki id_topik = 2
+        $edukasi = Edukasi::where('id_topik', 2)->get();
+
+        return view('pemerintah.edukasi.eksportembakau', [
+            'edukasis' => $edukasi,
+            'title' => 'Data Edukasi'
+        ]);
+    }
 }

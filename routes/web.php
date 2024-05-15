@@ -46,6 +46,7 @@ Route::prefix('/petani')->group(function() {
     Route::post('/batal',[PetaniController::class,'postBatalMengeditPengajuanSertifikasi']);
     Route::get('/download/{folder_name}/{file_name}', [PetaniController::class, 'downloadFile']);
     Route::get('/edukasi',[PetaniController::class,'melihatEdukasi']);
+    Route::get('/eksportembakau',[PetaniController::class,'melihatEksporTembakau']);
     Route::get('/tanamtembakau',[PetaniController::class,'melihatTanamTembakau']);
     Route::get('/pagetanam/{id_edukasi}', [PetaniController::class, 'melihatPageTanam'])->name('pagetanam.petani');
 });
@@ -67,6 +68,7 @@ Route::prefix('/pemerintah')->group(function(){
     Route::post('/unggah',[PemerintahController::class,'postMengunggahPengajuanSertifikasi']);
     Route::get('/download/{folder_name}/{file_name}', [PemerintahController::class, 'downloadFile']);
     Route::get('/edukasi',[PemerintahController::class,'melihatEdukasi']);
+    Route::get('/eksportembakau',[PemerintahController::class,'melihatEksporTembakau']);
     Route::get('/tanamtembakau',[PemerintahController::class,'melihatTanamTembakau']);
     Route::get('/pagetanam/{id_edukasi}', [PemerintahController::class, 'melihatPageTanam'])->name('pagetanam.pemerintah');
 });
