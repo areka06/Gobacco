@@ -19,9 +19,10 @@
         background-color: #FFB000;
         border-radius: 30px;
         margin-top: 40px;
-        margin-left: 150px;
         outline: none;
         border: none;
+        margin-left: 30px;
+        margin-right: 30px;
     }
     .page{
         font-family: 'Poppins', sans-serif;
@@ -41,10 +42,15 @@
         color: #00422580;
         width: 800px;
     }
+    .buttons{
+        display: flex;
+        justify-content: space-between;
+    }
     
 </style>
 <body>
     <section class="font-poppins">
+        <div class="buttons">
         @if ($edukasi->id_topik == 1)
             <a href="/admin/tanamtembakau">
         @elseif ($edukasi->id_topik == 2)
@@ -54,6 +60,9 @@
                 <button>Kembali</button>
             </div>
         </a>
+        <a href="/admin/ubahedukasi/{{$edukasi->id_edukasi}}"><button>Edit</button></a>
+        </div>
+        
         <div class="page">
             <h2 style="font-family: 'Poppins', sans-serif; color: #004225; font-weight:600; font-size:26px;" >{{$edukasi->judul_edukasi}}</h2>
             <div class="image-edu"><img src="../../storage/gambar_edu//{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>

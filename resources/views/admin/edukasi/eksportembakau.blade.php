@@ -139,7 +139,7 @@
                                     <tr>
                                         <td style="width: 300px;">
                                             <a href="{{ route('pagetanam.admin', ['id_edukasi' => $edukasi->id_edukasi]) }}">
-                                                <div class="image-edu"><img src="../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
+                                                <div class="image-edu"><img src="../../storage/gambar_edu//{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
                                             </a>
                                         </td>
                                         <td>

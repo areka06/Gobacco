@@ -5,154 +5,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title }}</title>
     <link rel="stylesheet" href="../dist/output.css">
     <link rel="stylesheet" href="../dist/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <style>
-    .Edukasi {
-        margin-top: -50px;
-        display: flex;
-        border-radius: 50px;
-        z-index: 999;
+    body {
+        background-color: #F5F5DC;
+        font-family: 'Poppins', sans-serif;
     }
 
-    .image2-wrapper {
-        width: 300px;
-        height: 400px;
+    header {
+        margin-top: 65px;
+        font-size: 32px;
+        font-weight: 600;
+        color: #004225;
+        text-align: center;
     }
 
-    .image2-wrapper button {
-        margin-bottom: 30px;
-    }
-    tbody tr:nth-child(odd) {
-        background-color: #004225;
-    }
-    tbody tr:nth-child(even) {
-        color: black;
-    }
-    .buttons-back{
+    button {
+        color: #fff;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
         width: 150px;
         height: 45px;
         background-color: #FFB000;
         border-radius: 30px;
-        z-index: 9999;
-        position: absolute;
-        margin-top: 75px;
-        margin-left: -510px;
+        outline: none;
+        border: none;
     }
-    .buttons-add{
-        width: 150px;
-        height: 35px;
-        background-color: #FFB000;
-        border-radius: 30px;
-        z-index: 9999;
-        position: absolute;
-        margin-top: 170px;
-        margin-left: 340px;
-    }
-    .image-edu{
+
+    .page {
+        font-family: 'Poppins', sans-serif;
+        margin-top: 20px;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        padding-top: 6px;
+        justify-content: center;
     }
-    .image-edu img{
-        width: 150px;
-        height: auto;
+
+    .page img {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 450px;
+    }
+
+    .page p {
+        color: #00422580;
+        width: 800px;
+    }
+
+    .container-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+        color: black;
+    }
+
+    input {
+        border-radius: 8px;
+        background-color: #9EB384;
+    }
+
+    textarea {
+        border-radius: 8px;
+        border: 0;
+        background-color: #9EB384;
+        padding-left: 10px;
+        padding-top: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #topik {
+        width: 1000px;
+        height: 30px;
+    }
+
+    #judul {
+        width: 1000px;
+        height: 30px;
+    }
+
+    #gambar {
+        background-color: #9EB384;
+        height: 40px;
+    }
+
+    #teks {
+        width: 1000px;
+        height: 100px;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+    }
+
+    /* textarea */
+    input[type="text"] {
+        padding: 10px;
+        border: 0;
+    }
+
+    /* choose file */
+    input[type="file"] {
+        position: relative;
+        padding-top: 9px;
+        padding-left: 16px;
+        border-radius: 10px;
+        background-color: #fff;
+    }
+
+    input[type="file"]::file-selector-button {
+        border: 0px solid;
+        border-radius: 8px;
+        padding: 6px;
+        background-color: #CFE3BE;
+        transition: 1s;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+        background-color: #CFE3BE;
+    }
+    .buttons{
+        display: flex;
+        justify-content: space-evenly;
     }
 </style>
 
 <body>
+    <header>Mengubah data edukasi ekspor tembakau</header>
     <section class="font-poppins">
-        <div class="rightbox">
-            <div class=" bg-light-secondary absolute top-0 w-full z-50">
-                <img src="../images/Group 35.svg" alt="" class=" h-28 w-32 ml-4">
+        <div>
+
+
+            <div class="page">
+                <img src="../../storage/gambar_edu//{{ $edukasi->gambar_edukasi }}" alt="">
+                <form method="POST" action="{{ route('edukasi.update.admin', $edukasi->id_edukasi) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="container-form">
+                        <div class="input">
+                            <label for="topik">Topik Edukasi:</label>
+                            <input type="text" name="id_topik" id="topik" value="{{ $edukasi->id_topik }}" readonly>
+                        </div>
+
+                        <div class="input">
+                            <label for="judul">Judul Edukasi:</label>
+                            <input type="text" name="judul_edukasi" id="judul" value="{{ $edukasi->judul_edukasi }}">
+                        </div>
+
+                        <div class="input">
+                            <label for="gambar">Gambar Edukasi:</label>
+                            <input type="file" name="gambar_edukasi" id="gambar" accept="image/*">
+                            <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah gambar.</small>
+                        </div>
+
+                        <div class="input">
+                            <label for="teks">Teks Edukasi:</label>
+                            <textarea name="teks_edu" id="teks">{{ $edukasi->teks_edu }}</textarea>
+                        </div>
+
+                        <div class="buttons">
+                            <div class="batal" action="/admin/tanamtembakau">
+                                <button>Batal</button>
+                            </div>
+                            <button class="simpan" type="submit">Simpan</button>
+                        </div>
+
+
+                    </div>
+                </form>
             </div>
-            <div class="grid grid-cols-10 h-screen">
-                <div class=" col-span-2 bg-light-secondary flex flex-col justify-between relative">
-                    <div>
-                        <div class="pb-32"></div>
-                        <a href="/admin/dashboard" class="flex items-center px-4 py-2  text-light-primary hover:bg-light-button hover:rounded-full">
-                            <div class="">
-                                <img src="../images/Haruki Icons.svg" class="w-3/4">
-                            </div>
-                            Dashboard
-                        </a>
-                        <a href="/admin/user" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
-                            <div class="">
-                                <img src="../images/Haruki Icons (4).svg" class="w-3/4">
-                            </div>
-                            User
-                        </a>
-                        <a href="/admin/edukasi" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
-                            <div class="">
-                                <img src="../images/Haruki Icons (3).svg" class="w-3/4">
-                            </div>
-                            Edukasi
-                        </a>
-                    </div>
-                    <div class="items-end justify-end py-2 box-border">
 
-                        <form action="/logout" class="flex items-center justify-center p-2">
-                            <button type="submit" class=" text-center font-bold bg-light-button text-light-putih py-2 px-14 rounded-full hover:opacity-80 focus:shadow-outline  ">
-                                <span class=" text-xs">
-                                    Logout
-                                </span>
-                            </button>
-                        </form>
 
-                        <div class="flex items-center py-2 px-4 mt-0 space-x-4 justify-self-end">
-                            <img src="../images/profil.svg" alt="" class="w-12 h-12 rounded-lg dark:bg-gray-500">
-                            <div>
-                                <a href="/admin/akun">
-                                    <h2 class="text-base font-normal text-light-primary">Admin</h2>
-                                    <span class="flex items-center space-x-1 text-sm text-light-primary">
-                                        <p>Gobacco</p>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tengah" style="z-index:998; margin-top: 110px;height:635px; width:1105px; background-color:#F5F5DC; border-radius: 50px 50px 0 0; display:flex; justify-content:center;">
-                    <div id="edukasi" class="Edukasi">
-                        <div class="button-kembali"><a href="/admin/edukasi"><button class="buttons-back">Kembali</button></a></div>
-                        <div class="button-kembali"><a href="/admin/edukasi"><button class="buttons-add">+ Tambah Data</button></a></div>
-                        <h2 style="font-family: 'Poppins', sans-serif;">Informasi Edukasi Gobacco</h2>
-                        <div style="overflow-y: scroll; border-radius: 18px; max-height: 500px;">
-                        <table style="width: 1000px; " >
-                            <thead style="background-color: #9EB384;">
-                                <tr>
-                                    <td>GAMBAR EDUKASI</td>
-                                    <td>JUDUL EDUKASI</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="width: 300px;">
-                                    <div class="image-edu"><img src="../images/tanam.png" alt="gambar"></div>
-                                    </td>
-                                    <td>Syarat Utama jika Ingin Menanam Tembakau</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 300px;">
-                                    <div class="image-edu"><img src="../images/tanam.png" alt="gambar"></div>
-                                    </td>
-                                    <td>juduloo</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 300px;">
-                                    <div class="image-edu"><img src="../images/tanam.png" alt="gambar"></div>
-                                    </td>
-                                    <td>juduloo</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                </div>
     </section>
 </body>
 

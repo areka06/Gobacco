@@ -71,6 +71,10 @@ Route::prefix('/pemerintah')->group(function(){
     Route::get('/eksportembakau',[PemerintahController::class,'melihatEksporTembakau']);
     Route::get('/tanamtembakau',[PemerintahController::class,'melihatTanamTembakau']);
     Route::get('/pagetanam/{id_edukasi}', [PemerintahController::class, 'melihatPageTanam'])->name('pagetanam.pemerintah');
+    Route::get('/buatedukasi', [PemerintahController::class, 'membuatEdukasi']);
+    Route::post('/buatedukasi', [PemerintahController::class, 'postMembuatEdukasi'])->name('membuatedukasi.pemerintah');
+    Route::get('/ubahedukasi/{id_edukasi}', [PemerintahController::class, 'mengubahEdukasi'])->name('edukasi.edit.pemerintah');
+    Route::put('/ubahedukasi/{id_edukasi}', [PemerintahController::class, 'updateEdukasi'])->name('edukasi.update.pemerintah');
 });
 
 Route::prefix('/admin')->group(function(){
@@ -91,5 +95,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/edukasi',[AdminController::class,'melihatEdukasi']);
     Route::get('/pagetanam/{id_edukasi}', [AdminController::class, 'melihatPageTanam'])->name('pagetanam.admin');
     Route::get('/buatedukasi', [AdminController::class, 'membuatEdukasi']);
-    Route::post('/buatedukasi', [AdminController::class, 'postMembuatEdukasi'])->name('membuatedukasi');
+    Route::post('/buatedukasi', [AdminController::class, 'postMembuatEdukasi'])->name('membuatedukasi.admin');
+    Route::get('/ubahedukasi/{id_edukasi}', [AdminController::class, 'mengubahEdukasi'])->name('edukasi.edit.admin');
+    Route::put('/ubahedukasi/{id_edukasi}', [AdminController::class, 'updateEdukasi'])->name('edukasi.update.admin');
 });

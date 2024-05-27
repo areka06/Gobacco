@@ -12,15 +12,22 @@
 <style>
     body {
         background-color: #F5F5DC;
+        font-family: 'Poppins', sans-serif;
     }
-    header{
+
+    header {
         margin-top: 65px;
         font-size: 32px;
         font-weight: 600;
         color: #004225;
         text-align: center;
     }
+
     button {
+        color: #fff;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
         width: 150px;
         height: 45px;
         background-color: #FFB000;
@@ -68,24 +75,26 @@
 
     textarea {
         border-radius: 8px;
+        border: 0;
         background-color: #9EB384;
         padding-left: 10px;
         padding-top: 10px;
+        font-family: 'Poppins', sans-serif;
     }
 
     #topik {
         width: 1000px;
-        height: 40px;
+        height: 30px;
     }
 
     #judul {
         width: 1000px;
-        height: 40px;
+        height: 30px;
     }
 
     #gambar {
         background-color: #9EB384;
-        height: 60px;
+        height: 40px;
     }
 
     #teks {
@@ -101,12 +110,13 @@
     /* textarea */
     input[type="text"] {
         padding: 10px;
+        border: 0;
     }
 
     /* choose file */
     input[type="file"] {
         position: relative;
-        padding-top: 12px;
+        padding-top: 9px;
         padding-left: 16px;
         border-radius: 10px;
         background-color: #fff;
@@ -123,72 +133,56 @@
     input[type="file"]::file-selector-button:hover {
         background-color: #CFE3BE;
     }
-
-    .simpan {
-        position: absolute;
-        top: 85%;
-        left: 55%;
-    }
-
-    .batal {
-        position: absolute;
-        top: 85%;
-        left: 35%;
+    .buttons{
+        display: flex;
+        justify-content: space-evenly;
     }
 </style>
 
 <body>
-    <header>Menambahkan data edukasi ekspor tembakau</header>
+    <header>Mengubah data edukasi ekspor tembakau</header>
     <section class="font-poppins">
-    <div>
-                @foreach ($edukasis as $edukasi)
-                @if ($edukasi->id_topik == 1)
-                <a href="/admin/tanamtembakau">
-                    <div class="batal">
-                        <button>Batal</button>
+        <div>
+
+
+            <div class="page">
+                <img src="../../storage/gambar_edu//{{ $edukasi->gambar_edukasi }}" alt="">
+                <form method="POST" action="{{ route('edukasi.update.pemerintah', $edukasi->id_edukasi) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="container-form">
+                        <div class="input">
+                            <label for="topik">Topik Edukasi:</label>
+                            <input type="text" name="id_topik" id="topik" value="{{ $edukasi->id_topik }}" readonly>
+                        </div>
+
+                        <div class="input">
+                            <label for="judul">Judul Edukasi:</label>
+                            <input type="text" name="judul_edukasi" id="judul" value="{{ $edukasi->judul_edukasi }}">
+                        </div>
+
+                        <div class="input">
+                            <label for="gambar">Gambar Edukasi:</label>
+                            <input type="file" name="gambar_edukasi" id="gambar" accept="image/*">
+                            <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah gambar.</small>
+                        </div>
+
+                        <div class="input">
+                            <label for="teks">Teks Edukasi:</label>
+                            <textarea name="teks_edu" id="teks">{{ $edukasi->teks_edu }}</textarea>
+                        </div>
+
+                        <div class="buttons">
+                            <div class="batal" action="/pemerintah/tanamtembakau">
+                                <button>Batal</button>
+                            </div>
+                            <button class="simpan" type="submit">Simpan</button>
+                        </div>
+
+
                     </div>
-                </a>
-                @break <!-- Hentikan loop setelah menemukan satu tautan yang sesuai -->
-                @elseif ($edukasi->id_topik == 2)
-                <a href="/admin/eksportembakau">
-                    <div class="batal">
-                        <button>Batal</button>
-                    </div>
-                </a>
-                @break <!-- Hentikan loop setelah menemukan satu tautan yang sesuai -->
-                @endif
-                @endforeach
+                </form>
             </div>
-        <div class="page">
-            <form method="POST" action="{{ route('membuatedukasi.admin') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="container-form">
-                    <div class="input">
-                        <label for="topik">Topik Edukasi:</label>
-                        <input type="text" name="id_topik" id="topik" value="{{ $id_topik }}" readonly>
-                    </div>
-
-                    <div class="input">
-                        <label for="judul">Judul Edukasi:</label>
-                        <input type="text" name="judul_edukasi" id="judul">
-                    </div>
-
-                    <div class="input">
-                        <label for="gambar">Gambar Edukasi:</label>
-                        <input type="file" name="gambar_edukasi" id="gambar" accept="image/*">
-                    </div>
-
-                    <div class="input">
-                        <label for="teks">Teks Edukasi:</label>
-                        <textarea name="teks_edu" id="teks"></textarea>
-                    </div>
-
-                    <button class="simpan" type="submit">Simpan</button>
-
-                </div>
-            </form>
-            
-        </div>
 
 
     </section>

@@ -25,6 +25,8 @@
         height: 45px;
         background-color: #FFB000;
         border-radius: 30px;
+        margin-top: 40px;
+        margin-left: 150px;
         outline: none;
         border: none;
     }
@@ -126,41 +128,42 @@
 
     .simpan {
         position: absolute;
-        top: 85%;
-        left: 55%;
+        top: 80%;
+        left: 45%;
     }
 
     .batal {
         position: absolute;
-        top: 85%;
-        left: 35%;
+        top: 80%;
+        left: 25%;
     }
 </style>
 
 <body>
     <header>Menambahkan data edukasi ekspor tembakau</header>
     <section class="font-poppins">
-    <div>
-                @foreach ($edukasis as $edukasi)
-                @if ($edukasi->id_topik == 1)
-                <a href="/admin/tanamtembakau">
-                    <div class="batal">
-                        <button>Batal</button>
-                    </div>
-                </a>
-                @break <!-- Hentikan loop setelah menemukan satu tautan yang sesuai -->
-                @elseif ($edukasi->id_topik == 2)
-                <a href="/admin/eksportembakau">
-                    <div class="batal">
-                        <button>Batal</button>
-                    </div>
-                </a>
-                @break <!-- Hentikan loop setelah menemukan satu tautan yang sesuai -->
-                @endif
-                @endforeach
+        <div class="batal">
+        @foreach ($edukasis as $edukasi)
+        @if ($edukasi->id_topik == 1)
+        <a href="/pemerintah/tanamtembakau">
+            <div class="container">
+                <button>Kembali</button>
             </div>
+        </a>
+        @break <!-- Hentikan loop setelah menemukan satu tautan yang sesuai -->
+        @elseif ($edukasi->id_topik == 2)
+        <a href="/pemerintah/eksportembakau">
+            <div class="container">
+                <button>Kembali</button>
+            </div>
+        </a>
+        @break <!-- Hentikan loop setelah menemukan satu tautan yang sesuai -->
+        @endif
+        @endforeach
+        </div>
+
         <div class="page">
-            <form method="POST" action="{{ route('membuatedukasi.admin') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('membuatedukasi.pemerintah') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="container-form">
                     <div class="input">
@@ -184,12 +187,10 @@
                     </div>
 
                     <button class="simpan" type="submit">Simpan</button>
-
                 </div>
             </form>
-            
         </div>
-
+        
 
     </section>
 </body>
