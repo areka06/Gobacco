@@ -139,6 +139,7 @@
     window.closeModal = function(modalId) {
     document.getElementById(modalId).style.display = 'none'
     document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+    window.location.href = "/login";
     }
     </script>
 </body>

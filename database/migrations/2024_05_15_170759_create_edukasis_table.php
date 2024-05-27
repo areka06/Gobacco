@@ -19,6 +19,7 @@ class CreateEdukasisTable extends Migration
             $table->string('judul_edukasi', 120)->nullable(false);
             $table->string('gambar_edukasi', 40)->nullable(false);
             $table->text('teks_edu', 500)->nullable(false);
+            $table->date('tanggal')->nullable(false);
 
             $table->foreign('id_topik')->references('id_topik')->on('topik_edukasis');
         });

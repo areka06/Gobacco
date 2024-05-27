@@ -135,7 +135,8 @@ class AdminController extends Controller
             'id_topik' => 'required',
             'judul_edukasi' => 'required',
             'gambar_edukasi' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'teks_edu' => 'required'
+            'teks_edu' => 'required',
+            'tanggal' => 'required|date' // Tambahkan validasi untuk tanggal
         ]);
 
         try {
@@ -165,13 +166,15 @@ class AdminController extends Controller
 
             $edukasi->gambar_edukasi = $gambar_nama;
             $edukasi->teks_edu = $request->teks_edu;
+            $edukasi->tanggal = $request->tanggal; // Simpan tanggal dari request
 
             // Debugging data sebelum menyimpan
             Log::info('Data edukasi:', [
                 'id_topik' => $edukasi->id_topik,
                 'judul_edukasi' => $edukasi->judul_edukasi,
                 'gambar_edukasi' => $edukasi->gambar_edukasi,
-                'teks_edu' => $edukasi->teks_edu
+                'teks_edu' => $edukasi->teks_edu,
+                'tanggal' => $edukasi->tanggal // Tambahkan logging untuk tanggal
             ]);
 
             $edukasi->save();
@@ -185,6 +188,7 @@ class AdminController extends Controller
             return redirect()->back()->withInput()->withErrors(['error' => $error]);
         }
     }
+
 
     public function mengubahEdukasi($id_edukasi)
     {

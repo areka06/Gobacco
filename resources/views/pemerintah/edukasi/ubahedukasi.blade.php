@@ -64,7 +64,7 @@
     .input {
         display: flex;
         flex-direction: column;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         color: black;
     }
 
@@ -157,6 +157,11 @@
                         </div>
 
                         <div class="input">
+                            <label for="tanggal">Tanggal:</label>
+                            <input type="date" name="tanggal" id="tanggal" value="{{ $edukasi->tanggal }}" readonly>
+                        </div>
+
+                        <div class="input">
                             <label for="judul">Judul Edukasi:</label>
                             <input type="text" name="judul_edukasi" id="judul" value="{{ $edukasi->judul_edukasi }}">
                         </div>
@@ -186,6 +191,24 @@
 
 
     </section>
+
+    <script>
+    // Mendapatkan elemen input dengan ID 'tanggal'
+    const tanggalInput = document.getElementById('tanggal');
+    
+    // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const year = today.getFullYear();
+    const todayString = `${year}-${month}-${day}`;
+    
+    // Mengatur nilai input dengan tanggal hari ini
+    tanggalInput.value = todayString;
+    
+    // Mengatur atribut readonly untuk memastikan tanggal tidak bisa diubah
+    tanggalInput.setAttribute('readonly', true);
+</script>
 </body>
 
 </html>

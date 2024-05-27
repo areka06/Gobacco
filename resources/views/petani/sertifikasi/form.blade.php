@@ -86,7 +86,7 @@
                     <div class="w-full h-[75%] mt-5">
                         <h3 class="mb-10 text-3xl text-center font-bold leading-none text-light-secondary">Form Pengajuan
                             Sertifikasi</h3>
-                        <h6 class="mb-10 text-1xl text-center font-bold leading-none text-light-secondary">Untuk informasi pengajuan, <a href="#">klik disini</a> </h6>
+                        <h6 class="mb-10 text-1xl text-center font-bold leading-none text-light-secondary">Untuk informasi pengajuan, <a href="https://drive.google.com/file/d/1zbEFKNaQmPGxQavEyQQIATLRb-qZwtyJ/view?usp=sharing">klik disini</a> </h6>
                         <div class="tab grid grid-flow-col grid-cols-9 gap-y-4 h-[70%]">
                             <div class="col-span-1"></div>
                             <div class="col-span-3">
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="">
                                         <label for=" id_kecamatan" class="text-base font-medium text-light-secondary block mb-2">Kecamatan</label>
-                                        <input type="text" value="{{ $kecamatan->kecamatan }}" name="id_kecamatan" id="id_kecamatan"
+                                        <input disabled type="text" value="{{ $kecamatan->kecamatan }}" name="id_kecamatan" id="id_kecamatan"
                                             class="shadow-sm bg-light-fill bg-opacity-50 text-light-secondary rounded-lg block w-full p-2.5 focus:outline-slate-400"
                                             >
                                     </div>
@@ -152,11 +152,18 @@
                                     <input type="text" name="produk_tembakau" id=""
                                         class="shadow-sm bg-light-fill w-full  bg-opacity-50 text-light-secondary rounded-lg block p-2.5 focus:outline-slate-400">
                                 </div>
-                                <div class="">
-                                    <label for="no-hp" class="text-base font-medium text-light-secondary block mb-2">Jenis
+                                <div class="row-span-1">
+                                    <label for="nama" class="text-base font-medium text-light-secondary block mb-2 ">Jenis
                                         Tembakau</label>
-                                    <input type="text" name="id_jenis_tembakau" id="id_jenis_tembakau"
-                                        class="shadow-sm bg-light-fill w-full bg-opacity-50 text-light-secondary rounded-lg block p-2.5 focus:outline-slate-400">
+                                    <input type="hidden" name="id_jenis_tembakau" id="idJenisTemb">
+                                    <div class="dropdown w-full">
+                                        <div onclick="myFunction()" id="drop1" class="dropbtn shadow-sm py-[1.4rem] bg-light-fill w-full  bg-opacity-50 text-light-secondary rounded-lg block focus:outline-slate-400"></div>
+                                        <div id="myDropdown" class="dropdown-content cursor-pointer">
+                                            @foreach ($jenis_tembakaus as $jenis_tembakau)
+                                                <p data-id="{{ $jenis_tembakau->id_jenis_tembakau }}" class="jenisTembakau">{{ $jenis_tembakau->jenis_tembakau }}</p>
+                                            @endforeach
+                                          </div>
+                                    </div>
                                 </div>
                                 <label class="text-base font-medium text-light-secondary block mb-2 cursor-pointer w-[60%]">
                                     <p>Foto Tembakau</p>
@@ -220,8 +227,8 @@
                                     Pengujian Sertifikasi</label>
                                     <input type="hidden"id="idPengujian" name="id_pengujian" id="nama">
                                     <div class="dropdown w-full">
-                                        <div onclick="myFunction()" class="dropbtn shadow-sm py-[1.4rem] bg-light-fill w-full  bg-opacity-50 text-light-secondary rounded-lg block focus:outline-slate-400"></div>
-                                        <div id="myDropdown" class="dropdown-content cursor-pointer">
+                                        <div onclick="myFunction2()" id="drop2" class="dropbtn shadow-sm py-[1.4rem] bg-light-fill w-full  bg-opacity-50 text-light-secondary rounded-lg block focus:outline-slate-400"></div>
+                                        <div id="myDropdown2" class="dropdown-content cursor-pointer">
                                             @foreach ($jenis_pengujians as $jenis_pengujian)
                                                 <p data-harga="{{ $jenis_pengujian->harga_uji }}" data-id="{{ $jenis_pengujian->id_pengujian }}" class="jenisPengujian">{{ $jenis_pengujian->jenis_pengujian }}</p>
                                             @endforeach
@@ -407,6 +414,9 @@
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
+    function myFunction2() {
+        document.getElementById("myDropdown2").classList.toggle("show");
+    }
 
     function showTab(n) {
         var x = document.getElementsByClassName("tab");
@@ -448,11 +458,19 @@
         if(e.target.classList.contains('jenisPengujian')){
             document.querySelector('#hargaPengujian').value = e.target.dataset.harga;
             document.querySelector('#idPengujian').value = e.target.dataset.id;
-            document.querySelector('.dropbtn').innerText = e.target.innerText;
-            document.querySelector('.dropbtn').style.paddingTop = '0.7rem';
-            document.querySelector('.dropbtn').style.paddingBottom = '0.7rem';
-            document.querySelector('.dropbtn').style.paddingBottom = 'text-align: right;';
+            console.log(document.getElementById('idPengujian'))
+            document.querySelector('#drop2').innerText = e.target.innerText;
+            document.querySelector('#drop2').style.paddingTop = '0.7rem';
+            document.querySelector('#drop2').style.paddingBottom = '0.7rem';
+            document.querySelector('#drop2').style.paddingBottom = 'text-align: right;';
         }
-    })
+        if(e.target.classList.contains('jenisTembakau')){
+            document.querySelector('#idJenisTemb').value = e.target.dataset.id;
+            document.querySelector('#drop1').innerText = e.target.innerText;
+            document.querySelector('#drop1').style.paddingTop = '0.7rem';
+            document.querySelector('#drop1').style.paddingBottom = '0.7rem';
+            document.querySelector('#drop1').style.paddingBottom = 'text-align: right;';
+        }
+    });
 
     </script>

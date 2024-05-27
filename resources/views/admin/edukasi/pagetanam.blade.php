@@ -13,7 +13,7 @@
     body{
         background-color: #F5F5DC;
     }
-    button{
+    button {
         width: 150px;
         height: 45px;
         background-color: #FFB000;
@@ -23,6 +23,10 @@
         border: none;
         margin-left: 30px;
         margin-right: 30px;
+        font-size: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: #fff;
     }
     .page{
         font-family: 'Poppins', sans-serif;
@@ -60,7 +64,10 @@
                 <button>Kembali</button>
             </div>
         </a>
-        <a href="/admin/ubahedukasi/{{$edukasi->id_edukasi}}"><button>Edit</button></a>
+        @if ($edukasi->id_topik == 1)
+            <a href="/admin/ubahedukasi/{{$edukasi->id_edukasi}}">
+                <button>Edit</button></a>
+        @endif
         </div>
         
         <div class="page">

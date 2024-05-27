@@ -68,7 +68,7 @@
                         <div class="">
                             <h3 class="text-2xl font-bold text-light-secondary text-opacity-70 pb-8">Data Sertifikasi Mutu Produk yang Telah Diajukan</h3>
                             <div class="h-96 w-auto bg-light-fill bg-opacity-50 rounded-xl mr-4">
-                                <div class=" overflow-hidden text-center mx-2 h-full">
+                                <div class="overflow-y-scroll text-center mx-2 h-full" style="overflow-x: hidden; overflow-y: scroll;">
                                     @if($sertifikasis->isEmpty())
                                     <div class="h-full flex items-center flex-col justify-center">
                                         <img src="../images/blm aju.svg" class="w-24 mx-auto">
@@ -86,7 +86,7 @@
                                                 <th class="w-1/2 py-4 px-20 text-center text-gray-600 font-bold text-xs uppercase">AKSI</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class=" ">
                                             @foreach ($sertifikasis as $key => $sertifikasi)
                                                 @if(isset($sertifikasi->hasil_pengujian))
                                                 <tr class="text-light-secondary bg-opacity-80 text-xs" style="background-color: '#9EB384'">
@@ -109,7 +109,7 @@
                                                     </td>
                                                 </tr>
                                                 @else
-                                                <tr class="{{ $key%2 == 1? 'bg-light-primary' : 'bg-light-secondary' }} {{ $key%2 == 0? 'text-light-putih' : 'text-light-secondary' }} bg-opacity-80 text-xs">
+                                                <tr class="{{ $key%2 == 1? 'bg-light-primary' : 'bg-light-primary' }} {{ $key%2 == 0? 'text-light-secondary' : 'text-light-secondary' }} bg-opacity-80 text-xs">
                                                     <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->nama_petani }}</td>
                                                     <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->jenis_tembakau }}</td>
                                                     <td class="py-4 pr-2 border-b border-gray-200 ">

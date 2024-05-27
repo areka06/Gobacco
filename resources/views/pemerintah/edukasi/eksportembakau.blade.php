@@ -88,9 +88,9 @@
                         </a>
                         <a href="/pemerintah/user" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
                             <div class="">
-                                <img src="../images/Haruki Icons (4).svg" class="w-3/4">
+                                <img src="../images/Haruki Icons (2).svg" class="w-3/4">
                             </div>
-                            User
+                            Sertifikasi
                         </a>
                         <a href="/pemerintah/edukasi" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-light-button hover:rounded-full">
                             <div class="">
@@ -126,13 +126,14 @@
                     <div id="edukasi" class="Edukasi">
                         <div class="button-kembali"><a href="/pemerintah/edukasi"><button class="buttons-back">Kembali</button></a></div>
                         <div class="button-kembali"><a href="/pemerintah/buatedukasi"><button class="buttons-add">+ Tambah Data</button></a></div>
-                        <h2 style="font-family: 'Poppins', sans-serif;">Informasi Edukasi Gobacco</h2>
+                        <h2 style="font-family: 'Poppins', sans-serif;">Informasi Ekspor Gobacco</h2>
                         <div style="overflow-y: scroll; border-radius: 18px; max-height: 500px;">
                             <table style="width: 1000px; ">
                                 <thead style="background-color: #9EB384;">
                                     <tr>
                                         <td>GAMBAR EDUKASI</td>
                                         <td>JUDUL EDUKASI</td>
+                                        <td>TANGGAL</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -146,6 +147,11 @@
                                         <td>
                                             <a href="{{ route('pagetanam.pemerintah', ['id_edukasi' => $edukasi->id_edukasi]) }}">
                                                 {{ $edukasi->judul_edukasi }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('pagetanam.pemerintah', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                                {{ $edukasi->tanggal }}
                                             </a>
                                         </td>
                                     </tr>

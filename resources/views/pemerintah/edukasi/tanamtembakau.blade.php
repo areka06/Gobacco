@@ -125,13 +125,14 @@
                 <div class="tengah" style="z-index:998; margin-top: 110px;height:635px; width:1105px; background-color:#F5F5DC; border-radius: 50px 50px 0 0; display:flex; justify-content:center;">
                     <div id="edukasi" class="Edukasi">
                         <div class="button-kembali"><a href="/pemerintah/edukasi"><button class="buttons-back">Kembali</button></a></div>
-                        <h2 style="font-family: 'Poppins', sans-serif;">Informasi Edukasi Gobacco</h2>
+                        <h2 style="font-family: 'Poppins', sans-serif;">Informasi Tanam Gobacco</h2>
                         <div style="overflow-y: scroll; border-radius: 18px; max-height: 500px;">
                             <table style="width: 1000px; ">
                                 <thead style="background-color: #9EB384;">
                                     <tr>
                                         <td>GAMBAR EDUKASI</td>
                                         <td>JUDUL EDUKASI</td>
+                                        <td>TANGGAL</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -145,6 +146,11 @@
                                         <td>
                                             <a href="{{ route('pagetanam.pemerintah', ['id_edukasi' => $edukasi->id_edukasi]) }}">
                                                 {{ $edukasi->judul_edukasi }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('pagetanam.admin', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                                {{ $edukasi->tanggal }}
                                             </a>
                                         </td>
                                     </tr>

@@ -10,20 +10,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <style>
-    body{
+    body {
         background-color: #F5F5DC;
     }
-    button{
+
+    button {
         width: 150px;
         height: 45px;
         background-color: #FFB000;
         border-radius: 30px;
         margin-top: 40px;
-        margin-left: 150px;
         outline: none;
         border: none;
+        margin-left: 30px;
+        margin-right: 30px;
+        font-size: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: #fff;
     }
-    .page{
+
+    .page {
         font-family: 'Poppins', sans-serif;
         margin-top: 20px;
         display: flex;
@@ -31,33 +38,38 @@
         align-items: center;
         justify-content: center;
     }
-    .page img{
+
+    .page img {
         margin-top: 40px;
         margin-bottom: 40px;
-        width: 450px;
+        width: auto;
+        height: 450px;
     }
-    .page p{
+
+    .page p {
         color: #00422580;
         width: 800px;
     }
-    
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
+
 <body>
     <section class="font-poppins">
-        @if ($edukasi->id_topik == 1)
-            <a href="/pemerintah/tanamtembakau">
-        @elseif ($edukasi->id_topik == 2)
-            <a href="/pemerintah/eksportembakau">
-        @endif
-            <div class="container">
-                <button>Kembali</button>
-            </div>
-        </a>
+        <div class="buttons">
+            <a href="/petani/eksportembakau">
+                <div class="container">
+                    <button>Kembali</button>
+                </div>
+            </a>
+        </div>
         <div class="page">
-            <h2 style="font-family: 'Poppins', sans-serif; color: #004225; font-weight:600; font-size:26px;" >{{$edukasi->judul_edukasi}}</h2>
-            <div class="image-edu"><img src="../../images/{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
+            <h2 style="font-family: 'Poppins', sans-serif; color: #004225; font-weight:600; font-size:26px;">{{$edukasi->judul_edukasi}}</h2>
+            <div class="image-edu"><img src="../../storage/gambar_edu//{{ $edukasi->gambar_edukasi }}" alt="gambar"></div>
             <p>{{$edukasi->teks_edu}}</p>
-
         </div>
     </section>
 </body>

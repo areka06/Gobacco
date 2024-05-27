@@ -139,11 +139,13 @@ class PetaniController extends Controller
         if (isset($id_petani)) {
             $jenis_pengujians = JenisPengujian::all();
             $petani = PetaniTembakau::query()->find($id_petani);
+            $jenis_tembakaus = JenisTembakau::all();
             $kecamatan = Kecamatan::query()->where('id_kecamatan', $petani->id_petani)->first();
             return view('petani.sertifikasi.form', [
                 'title' => 'Petani | Pengajuan Sertifikasi',
                 'jenis_pengujians' => $jenis_pengujians,
                 'petani' => $petani,
+                'jenis_tembakaus' => $jenis_tembakaus,
                 'kecamatan' => $kecamatan,
             ]);
         } else {
@@ -164,8 +166,6 @@ class PetaniController extends Controller
             'bukti_tf' => 'required',
             'id_kecamatan' => 'required',
         ]);
-
-        $jenis_tembakau = JenisTembakau::query()->where('jenis_tembakau', $validated['id_jenis_tembakau'])->first();
 
         $gmb_tembakau = $request->file('gmb_tembakau');
         $name0 = $gmb_tembakau->getClientOriginalName();
@@ -188,7 +188,7 @@ class PetaniController extends Controller
         SertifikasiProduk::create([
             'id_petani' => $id_petani,
             'id_pengujian' => $validated['id_pengujian'],
-            'id_jenis_tembakau' => $jenis_tembakau->id_jenis_tembakau,
+            'id_jenis_tembakau' => $validated['id_jenis_tembakau'],
             'gmb_tembakau' => $name0,
             'id_status' => 3,
             'id_kecamatan' => $validated['id_kecamatan'],

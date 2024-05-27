@@ -40,7 +40,7 @@
                             <div class="my-12 text-center">
                                 <div
                                     class=" leading-none px-2 inline-block text-sm text-light-secondary opacity-70 tracking-wide font-medium transform translate-y-1/2">
-                                    Lupa kata sandi anda? <span class="italic font-normal cursor-pointer"> Klik disini</span> 
+                                    <span class="italic font-normal cursor-pointer"></span> 
                                 </div>
                             </div>
                             <button type="submit"
