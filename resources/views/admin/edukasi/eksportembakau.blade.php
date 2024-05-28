@@ -132,6 +132,7 @@
                                     <tr>
                                         <td>GAMBAR EDUKASI</td>
                                         <td>JUDUL EDUKASI</td>
+                                        <td>TANGGAL</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -145,6 +146,11 @@
                                         <td>
                                             <a href="{{ route('pagetanam.admin', ['id_edukasi' => $edukasi->id_edukasi]) }}">
                                                 {{ $edukasi->judul_edukasi }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('pagetanam.admin', ['id_edukasi' => $edukasi->id_edukasi]) }}">
+                                                {{ $edukasi->tanggal }}
                                             </a>
                                         </td>
                                     </tr>
