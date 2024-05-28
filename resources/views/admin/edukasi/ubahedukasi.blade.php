@@ -158,7 +158,7 @@
 
                         <div class="input">
                             <label for="tanggal">Tanggal:</label>
-                            <input type="date" name="id_tanggal" id="tanggal" value="{{ $id_topik }}" readonly>
+                            <input type="date" name="id_tanggal" id="tanggal" value="{{ $edukasi->tanggal }}" readonly>
                         </div>
 
                         <div class="input">
