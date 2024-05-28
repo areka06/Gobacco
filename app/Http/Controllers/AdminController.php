@@ -74,7 +74,7 @@ class AdminController extends Controller
     }
     public function melihatDataPemerintah()
     {
-        $pemerintahs = Pemerintah::all();
+        $pemerintahs = Pemerintah::with('Kecamatan')->get();
         return view('admin.user.pemerintah', [
             'pemerintahs' => $pemerintahs,
             'title' => 'Data Pemerintah'
@@ -82,7 +82,8 @@ class AdminController extends Controller
     }
     public function melihatDataPetani()
     {
-        $petanis = PetaniTembakau::all();
+        $petanis = PetaniTembakau::with('jenisKelamin')->get();
+        $petanis = PetaniTembakau::with('Kecamatan')->get();
         return view('admin.user.petani', [
             'petanis' => $petanis,
             'title' => 'Data Petani'
@@ -90,7 +91,7 @@ class AdminController extends Controller
     }
     public function melihatTanamTembakau()
     {
-        $edukasi = Edukasi::where('id_topik', 1)->get();
+        $edukasi = Edukasi::where('id_topik', 1)->orderBy('id_edukasi', 'desc')->get();
         return view('admin.edukasi.tanamtembakau', [
             'edukasis' => $edukasi,
             'title' => 'Data Edukasi'
@@ -104,7 +105,7 @@ class AdminController extends Controller
     public function melihatEksporTembakau()
     {
         // Mengambil data dari tabel Edukasi yang memiliki id_topik = 2
-        $edukasi = Edukasi::where('id_topik', 2)->get();
+        $edukasi = Edukasi::where('id_topik', 2)->orderBy('id_edukasi', 'desc')->get();
 
         return view('admin.edukasi.eksportembakau', [
             'edukasis' => $edukasi,
