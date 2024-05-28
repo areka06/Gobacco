@@ -65,7 +65,7 @@
             </div>
         </a>
         @if ($edukasi->id_topik == 2)
-            <a href="/admin/ubahedukasi/{{$edukasi->id_edukasi}}">
+            <a href="/pemerintah/ubahedukasi/{{$edukasi->id_edukasi}}">
             <button>Edit</button></a>
         @endif
         </div>
