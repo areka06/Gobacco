@@ -148,9 +148,9 @@
                                             <td>{{ $petani->username_petani }}</td>
                                             <td>{{ $petani->pw_petani }}</td>
                                             <td>{{ $petani->email_petani }}</td>
-                                            <td>{{ $petani->id_jenis_kelamin }}</td>
+                                            <td>{{ $petani->jenisKelamin->jenis_kelamin }}</td>
                                             <td>{{ $petani->alamat_petani }}</td>
-                                            <td>{{ $petani->id_kecamatan }}</td>
+                                            <td>{{ $petani->Kecamatan->kecamatan }}</td>
                                             <td>{{ $petani->telp_petani }}</td>
                                             <td>{{ $petani->noktp_petani }}</td>
                                         </tr>
