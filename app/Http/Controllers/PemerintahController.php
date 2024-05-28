@@ -74,20 +74,25 @@ class PemerintahController extends Controller
     }
     public function melihatPengajuanSertifikasi(Request $request)
     {
-        $id_pemerintah = $request->session()->get('id',null);
-        if(isset($id_pemerintah)) {
-            $sertifikasis = SertifikasiProduk::query()->select('sertifikasi_produks.*','jenis_pengujians.jenis_pengujian','jenis_tembakaus.*','petani_tembakaus.nama_petani')
-            ->join('jenis_tembakaus','jenis_tembakaus.id_jenis_tembakau','=','sertifikasi_produks.id_jenis_tembakau')
-            ->join('jenis_pengujians','jenis_pengujians.id_pengujian','=','sertifikasi_produks.id_pengujian')
-            ->join('petani_tembakaus','petani_tembakaus.id_petani','=','sertifikasi_produks.id_petani')->get();
+        $id_pemerintah = $request->session()->get('id', null);
+    
+        if ($id_pemerintah) {
+            $sertifikasis = SertifikasiProduk::with('StatusUji')
+                ->select('sertifikasi_produks.*', 'jenis_pengujians.jenis_pengujian', 'jenis_tembakaus.*', 'petani_tembakaus.nama_petani')
+                ->join('jenis_tembakaus', 'jenis_tembakaus.id_jenis_tembakau', '=', 'sertifikasi_produks.id_jenis_tembakau')
+                ->join('jenis_pengujians', 'jenis_pengujians.id_pengujian', '=', 'sertifikasi_produks.id_pengujian')
+                ->join('petani_tembakaus', 'petani_tembakaus.id_petani', '=', 'sertifikasi_produks.id_petani')
+                ->get();
+    
             return view('pemerintah.sertifikasi.table', [
                 'title' => 'Pemerintah | Sertifikasi',
                 'sertifikasis' => $sertifikasis
             ]);
         } else {
-            return redirect('/')->with('failed','Silahkan login terlebih dahulu!');
+            return redirect('/')->with('failed', 'Silahkan login terlebih dahulu!');
         }
     }
+    
     public function membuatPengajuanSertifikasi($id_sertifikasi)
     {
         $sertifikasi = SertifikasiProduk::query()->select('sertifikasi_produks.*','jenis_pengujians.*','jenis_tembakaus.*','petani_tembakaus.*', 'kecamatans.*')
@@ -133,21 +138,42 @@ class PemerintahController extends Controller
         }
     }
     public function postMengunggahPengajuanSertifikasi(Request $request)
-    {
-        $validated = $request->validate([
-            'id_sertifikasi' => 'required',
-            'hasil_pengujian' => 'required'
-        ]);
-        $hasil_pengujian = $request->file('hasil_pengujian');
-        $name = $hasil_pengujian->getClientOriginalName();
-        $hasil_pengujian->storePubliclyAs('hasil_pengujians', $name, 'public');
-        try {
-            SertifikasiProduk::query()->where('id_sertifikasi',$validated['id_sertifikasi'])->update(['hasil_pengujian' => $name]);
-            return redirect('/pemerintah/sertifikasi')->with('success', 'Anda Telah Menyutujui Konfirmasi Sertifikasi!');
-        } catch (QueryException $e) {
-            return back()->with('failed','Data akun gagal diperbarui!');
-        }
+{
+    // Validasi request
+    $validated = $request->validate([
+        'id_sertifikasi' => 'required',
+        'hasil_pengujian' => 'required|file|mimes:pdf,doc,docx', // Tambahkan validasi tipe file
+    ]);
+
+    // Mendapatkan file hasil_pengujian
+    $hasil_pengujian = $request->file('hasil_pengujian');
+    if (!$hasil_pengujian) {
+        return back()->with('failed', 'File hasil pengujian tidak ditemukan!');
     }
+
+    // Mendapatkan nama file asli
+    $name = $hasil_pengujian->getClientOriginalName();
+
+    // Menyimpan file dengan public visibility
+    try {
+        $hasil_pengujian->storePubliclyAs('hasil_pengujians', $name, 'public');
+    } catch (\Exception $e) {
+        return back()->with('failed', 'Gagal mengunggah file hasil pengujian!')->withErrors(['file' => $e->getMessage()]);
+    }
+
+    // Melakukan update pada database
+    try {
+        SertifikasiProduk::query()->where('id_sertifikasi', $validated['id_sertifikasi'])
+            ->update([
+                'hasil_pengujian' => $name,
+                'id_status' => 4,
+            ]);
+        return redirect('/pemerintah/sertifikasi')->with('success', 'Anda Telah Menyutujui Konfirmasi Sertifikasi!');
+    } catch (QueryException $e) {
+        return back()->with('failed', 'Data akun gagal diperbarui!')->withErrors(['db' => $e->getMessage()]);
+    }
+}
+
     public function downloadFile(string $folder_name, string $file_name)
     {
         return Storage::disk('public')->download('/' . $folder_name .'/' . $file_name);
@@ -176,7 +202,7 @@ class PemerintahController extends Controller
     {
         $id_pemerintah = $request->session()->get('id', null);
         $pemerintah = Pemerintah::find($id_pemerintah);
-        $edukasi = Edukasi::where('id_topik', 1)->get();
+        $edukasi = Edukasi::where('id_topik', 1)->orderBy('id_edukasi', 'desc')->get();
         return view('pemerintah.edukasi.tanamtembakau', [
             'edukasis' => $edukasi,
             'pemerintah' => $pemerintah,
@@ -191,7 +217,7 @@ class PemerintahController extends Controller
     public function melihatEksporTembakau()
     {
         // Mengambil data dari tabel Edukasi yang memiliki id_topik = 2
-        $edukasi = Edukasi::where('id_topik', 2)->get();
+        $edukasi = Edukasi::where('id_topik', 2)->orderBy('id_edukasi', 'desc')->get();
 
         return view('pemerintah.edukasi.eksportembakau', [
             'edukasis' => $edukasi,
