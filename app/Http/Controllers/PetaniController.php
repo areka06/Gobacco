@@ -265,7 +265,7 @@ class PetaniController extends Controller
     {
         $id_petani = $request->session()->get('id', null);
         $petani = PetaniTembakau::find($id_petani);
-        $edukasi = Edukasi::where('id_topik', 1)->get();
+        $edukasi = Edukasi::where('id_topik', 1)->orderBy('id_edukasi', 'desc')->get();
         return view('petani.edukasi.tanamtembakau', [
             'edukasis' => $edukasi,
             'petani' => $petani ,
@@ -292,7 +292,7 @@ class PetaniController extends Controller
     {
         $id_petani = $request->session()->get('id', null);
         $petani = PetaniTembakau::find($id_petani);
-        $edukasi = Edukasi::where('id_topik', 2)->get();
+        $edukasi = Edukasi::where('id_topik', 2)->orderBy('id_edukasi', 'desc')->get();
 
         return view('petani.edukasi.eksportembakau', [
             'edukasis' => $edukasi,
