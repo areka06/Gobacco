@@ -98,11 +98,12 @@
                                                     <th class="w-1/2 py-4 pr-2 text-center text-gray-600 font-bold text-xs uppercase">JENIS PENGUJIAN</th>
                                                     <th class="w-1/4 py-4 pr-2 text-center text-gray-600 font-bold text-xs uppercase">STATUS PENGUJIAN</th>
                                                     <th class="w-1/4 py-4 px-20 text-center text-gray-600 font-bold text-xs uppercase">AKSI</th>
+                                                    <th class="w-1/2 py-4 px-20 text-center text-gray-600 font-bold text-xs uppercase">HASIL</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($sertifikasis as $key => $sertifikasi)
-                                                <tr class="{{ $key%2 == 1? 'bg-light-primary' : 'bg-light-primary' }} {{ $key%2 == 0? 'text-light-secondary' : 'text-light-secondary' }} bg-opacity-80 text-xs">
+                                                <tr class="{{ $key%2 == 1? 'bg-light-primary' : 'bg-light-secondary' }} {{ $key%2 == 0? 'text-light-primary' : 'text-light-secondary' }} bg-opacity-80 text-xs">
                                                     <td class="py-4 pr-2">{{ $sertifikasi->jenis_tembakau }}</td>
                                                     <td class="flex justify-center py-4 pr-2 ">
                                                         <img src="../storage/gmb_tembakaus/{{ $sertifikasi->gmb_tembakau }}">
@@ -132,6 +133,7 @@
                                                             </a>
                                                         @endif
                                                     </td>
+                                                    <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->hasil_pengujian }}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

@@ -81,22 +81,22 @@
                                                 <th class="w-1/2 py-4 pr-0 pl-2 text-center text-gray-600 font-bold text-xs uppercase">NAMA PETANI</th>
                                                 <th class="w-1/2 py-4 px-2 text-center text-gray-600 font-bold text-xs uppercase">JENIS TEMBAKAU</th>
                                                 <th class="w-1/2 py-4 px-2 text-center text-gray-600 font-bold text-xs uppercase">FOTO</th>
-                                                <th class="w-1/2 py-4 px-6 text-center text-gray-600 font-bold text-xs uppercase">SURAT IZIN USAHA</th>
                                                 <th class="w-1/2 py-4 px-6 text-center text-gray-600 font-bold text-xs uppercase">JENIS PENGUJIAN</th>
+                                                <th class="w-1/2 py-4 px-20 text-center text-gray-600 font-bold text-xs uppercase">STATUS</th>
                                                 <th class="w-1/2 py-4 px-20 text-center text-gray-600 font-bold text-xs uppercase">AKSI</th>
+                                                <th class="w-1/2 py-4 px-20 text-center text-gray-600 font-bold text-xs uppercase">HASIL</th>
                                             </tr>
                                         </thead>
                                         <tbody class=" ">
                                             @foreach ($sertifikasis as $key => $sertifikasi)
-                                                @if(isset($sertifikasi->hasil_pengujian))
-                                                <tr class="text-light-secondary bg-opacity-80 text-xs" style="background-color: '#9EB384'">
+                                                <tr class="{{ $key%2 == 1? 'bg-light-primary' : 'bg-light-secondary' }} {{ $key%2 == 0? 'text-light-primary' : 'text-light-secondary' }} bg-opacity-80 text-xs">
                                                     <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->nama_petani }}</td>
                                                     <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->jenis_tembakau }}</td>
                                                     <td class="py-4 pr-2 border-b border-gray-200 ">
                                                         <img src="../storage/gmb_tembakaus/{{ $sertifikasi->gmb_tembakau }}" class="ml-2">
                                                     </td>
-                                                    <td class="py-4 px-6 border-b border-gray-200">{{ $sertifikasi->surat_izin_usaha }}</td>
-                                                    <td class="py-4 px-6 border-b border-gray-200">{{ $sertifikasi->jenis_pengujian }}</td>        
+                                                    <td class="py-4 px-6 border-b border-gray-200">{{ $sertifikasi->jenis_pengujian }}</td>  
+                                                    <td class="py-4 px-6 border-b border-gray-200">{{ $sertifikasi->StatusUji->status_uji}}</td>       
                                                     <td class="py-1 px-2 border-b border-gray-200">
                                                         <a href="/pemerintah/unggah/{{ $sertifikasi->id_sertifikasi }}" class="cursor-pointer rounded-full bg-light-iya px-2 py-1 text-xs font-normal text-light-putih hover:bg-green-600">Upload                              
                                                         </a>
@@ -107,28 +107,8 @@
                                                             </span>
                                                         </a>
                                                     </td>
+                                                    <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->hasil_pengujian }}</td>
                                                 </tr>
-                                                @else
-                                                <tr class="{{ $key%2 == 1? 'bg-light-primary' : 'bg-light-primary' }} {{ $key%2 == 0? 'text-light-secondary' : 'text-light-secondary' }} bg-opacity-80 text-xs">
-                                                    <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->nama_petani }}</td>
-                                                    <td class="py-4 pr-2 border-b border-gray-200">{{ $sertifikasi->jenis_tembakau }}</td>
-                                                    <td class="py-4 pr-2 border-b border-gray-200 ">
-                                                        <img src="../storage/gmb_tembakaus/{{ $sertifikasi->gmb_tembakau }}" class="ml-2">
-                                                    </td>
-                                                    <td class="py-4 px-6 border-b border-gray-200">{{ $sertifikasi->surat_izin_usaha }}</td>
-                                                    <td class="py-4 px-6 border-b border-gray-200">{{ $sertifikasi->jenis_pengujian }}</td>        
-                                                    <td class="py-1 px-2 border-b border-gray-200">
-                                                        <a href="/pemerintah/unggah/{{ $sertifikasi->id_sertifikasi }}" class="cursor-pointer rounded-full bg-light-iya px-2 py-1 text-xs font-normal text-light-putih hover:bg-green-600">Upload                              
-                                                        </a>
-                                                        <a href="/pemerintah/buat/{{ $sertifikasi->id_sertifikasi }}"
-                                                            class="text-center font-norma cursor-pointer bg-light-button text-light-putih py-1 px-2 rounded-full hover:bg-opacity-80 focus:shadow-outline ml-1 ">
-                                                            <span class=" text-xs">
-                                                                Lihat Detail
-                                                            </span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                @endif
                                             @endforeach
 
                                         </tbody>

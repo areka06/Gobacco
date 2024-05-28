@@ -49,6 +49,10 @@
         #kirimBtn {
             display: none;
         }
+        input#gmb_tembakau.absolute{
+            left: 20%;
+            top: 72%;
+        }
     </style>
 </head>
 
@@ -165,17 +169,17 @@
                                           </div>
                                     </div>
                                 </div>
-                                <label class="text-base font-medium text-light-secondary block mb-2 cursor-pointer w-[60%]">
+                                <label class="text-base font-medium text-light-secondary block mb-2 cursor-pointer w-[90%]">
                                     <p>Foto Tembakau</p>
                                     <div
-                                        class="w-full bg-light-fill h-[10rem] bg-opacity-50 text-light-secondary rounded-lg p-2.5 box-border focus:outline-slate-400 grid grid-cols-3">
-                                        <div class="col-span-1"></div>
-                                        <div class="flex items-center">
+                                        class="w-full bg-light-fill h-[10rem] bg-opacity-50 text-light-secondary rounded-lg p-2.5 box-border focus:outline-slate-400">
+                                        <div class=""></div>
+                                        <div class="flex items-start">
 
-                                            <img class="col-span-1" id="foto-tembakau" src="../images/foto tembakau.svg" alt="" class=" w-20">
+                                            <img class="" id="foto-tembakau" src="../images/foto tembakau.svg" alt="" class=" w-20">
                                         </div>
-                                        <input type="file" name="gmb_tembakau" id="gmb_tembakau"
-                                            class=" invisible col-span-1 shadow-sm h-[80%] w-full bg-light-fill bg-opacity-50 text-light-secondary rounded-lg p-2.5 box-border focus:outline-slate-400">
+                                        <input type="file" name="gmb_tembakau" id="gmb_tembakau" 
+                                            class="absolute">
                                     </div>
                                 </label>
                             </div>
@@ -194,7 +198,7 @@
                                                 <label for="surat_izin_usaha"
                                                     class="text-base font-medium text-light-primary block cursor-pointer ">Unggah</label>
                                                 <input type="file" name="surat_izin_usaha" id="surat_izin_usaha"
-                                                    class=" invisible shadow-sm h-[80%] w-full bg-light-fill bg-opacity-50 text-light-secondary rounded-lg p-2.5 box-border focus:outline-slate-400">
+                                                    class=" ">
                                             </div>
                                         </div>
                                     </div>
@@ -211,7 +215,7 @@
                                                 <label for="berkas_lain"
                                                     class="text-base font-medium text-light-primary block cursor-pointer ">Unggah</label>
                                                 <input type="file" name="berkas_lain" id="berkas_lain"
-                                                    class=" invisible shadow-sm h-[80%] w-full bg-light-fill bg-opacity-50 text-light-secondary rounded-lg p-2.5 box-border focus:outline-slate-400">
+                                                    class="">
                                             </div>
                                         </div>
                                     </div>
@@ -262,7 +266,8 @@
                                                 <label for="bukti_tf"
                                                     class="text-base font-medium text-light-primary block cursor-pointer ">Unggah</label>
                                                 <input type="file" name="bukti_tf" id="bukti_tf"
-                                                    class=" invisible shadow-sm h-[80%] w-full bg-light-fill bg-opacity-50 text-light-secondary rounded-lg p-2.5 box-border focus:outline-slate-400">
+                                                    class=" ">
+                                                    <!-- invisible shadow-sm h-[80%] w-full bg-light-fill bg-opacity-50 text-light-secondary rounded-lg p-2.5 box-border focus:outline-slate-400 -->
                                             </div>
                                         </div>
                                     </div>

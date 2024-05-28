@@ -60,11 +60,15 @@
 <body>
     <section class="font-poppins">
         <div class="buttons">
-            <a href="/petani/eksportembakau">
-                <div class="container">
-                    <button>Kembali</button>
-                </div>
-            </a>
+            @if ($edukasi->id_topik == 1)
+            <a href="/petani/tanamtembakau">
+                @elseif ($edukasi->id_topik == 2)
+                <a href="/petani/eksportembakau">
+                    @endif
+                    <div class="container">
+                        <button>Kembali</button>
+                    </div>
+                </a>
         </div>
         <div class="page">
             <h2 style="font-family: 'Poppins', sans-serif; color: #004225; font-weight:600; font-size:26px;">{{$edukasi->judul_edukasi}}</h2>

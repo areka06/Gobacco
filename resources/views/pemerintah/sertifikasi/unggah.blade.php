@@ -25,9 +25,9 @@
                         Sertifikasi Mutu Tembakau</h3>
                 </div>
                 <label for="hasil_pengujian" class="h-[60%] bg-light-fill rounded-lg flex justify-center items-center" id="dropzone">
-                    <input type="file" class="hidden" name="hasil_pengujian" id="hasil_pengujian"/>
                     <img class="h-[4rem] w-[4rem]" src="https://www.svgrepo.com/show/357902/image-upload.svg"
                         alt="">
+                    <input type="file" class="" name="hasil_pengujian" id="hasil_pengujian"/>
                 </label>
                 <div class="text-center w-full h-[20%] flex justify-between items-center">
                     <a href="/pemerintah/sertifikasi"
