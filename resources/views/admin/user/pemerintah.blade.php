@@ -120,7 +120,7 @@
                     <div id="edukasi" class="Edukasi">
                         <h2 style="font-family: 'Poppins', sans-serif;">List Data Akun Pemerintah</h2>
                         <div class="h-96 w-full bg-light-fill bg-opacity-50 rounded-xl mr-4">
-                            <div class=" overflow-hidden text-center mx-2 h-full" style="overflow-y: auto; width:1000px; height:370px; margin: 0 auto;">
+                            <div class=" overflow-hidden text-center mx-2 h-full" style="overflow-y: auto; overflow-x: scroll; width:1000px; height:370px; margin: 0 auto;">
                                 <table>
                                     <thead>
                                         <tr>
@@ -140,7 +140,7 @@
                                             <td>{{ $pemerintah->pw_pemerintah }}</td>
                                             <td>{{ $pemerintah->email_pemerintah }}</td>
                                             <td>{{ $pemerintah->telp_pemerintah }}</td>
-                                            <td>{{ $pemerintah->id_kecamatan }}</td>
+                                            <td>{{ $pemerintah->Kecamatan->kecamatan }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
