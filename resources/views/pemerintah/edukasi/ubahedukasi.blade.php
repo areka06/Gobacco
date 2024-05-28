@@ -178,7 +178,7 @@
                         </div>
 
                         <div class="buttons">
-                            <div class="batal" action="/pemerintah/tanamtembakau">
+                            <div class="batal" action="/pemerintah/eksportembakau">
                                 <button>Batal</button>
                             </div>
                             <button class="simpan" type="submit">Simpan</button>
